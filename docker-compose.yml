@@ -1,0 +1,46 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    working_dir: /var/www
+    volumes:
+      - ./src/:/var/www
+    networks:
+      - laravel
+    
+
+  webserver:
+    image: nginx:alpine
+    container_name: nginx_server
+    working_dir: /var/www
+    volumes:
+      - ./src/:/var/www
+      - ./src/docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"  
+    networks:
+      - laravel
+
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: $(DB_ROOT_PASSWORD)
+      MYSQL_DATABASE: $(DB_NAME)
+      MYSQL_USER: $(DB_USERNAME)
+      MYSQL_PASSWORD: $(DB_PASSWORD)
+    ports:
+      - '3306:3306'
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  dbdata:
