@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $post->title }}</h1>
-        @if ($post->image_path)
-            <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post Image" class="img-fluid">
-        @endif
-        <p>{{ $post->content }}</p>
-        <p>Автор: {{ $post->user->name }}</p>
-        <p>Місцезнаходження: {{ $post->location }}</p>
-        <a href="{{ route('posts.index') }}" class="btn btn-primary">Назад до постів</a>
+        <h1>User: {{ $user->name }}</h1>
+        <ul>
+            <li><strong>Email:</strong> {{ $user->email }}</li>
+            <li><strong>Created:</strong> {{ $user->created_at->format('d-m-Y H:i:s') }}</li>
+            <li><strong>Updated:</strong> {{ $user->updated_at->format('d-m-Y H:i:s') }}</li>
+        </ul>
+        <a href="{{ route('users.index') }}" class="btn btn-secondary">Back to users</a>
     </div>
 @endsection
+

@@ -16,6 +16,5 @@ Route::get('/contact', [LabController::class, 'contact'])->middleware(TestMiddle
 Route::get('/hobbies', [LabController::class, 'hobbies'])->middleware(CheckName::class);
 Route::resource('posts', PostController::class);
 Route::resource('comments', CommentController::class);
-Route::resource('profiles', ProfileController::class);
 Route::resource('users', UserController::class);
 Route::resource('tags', TagController::class);

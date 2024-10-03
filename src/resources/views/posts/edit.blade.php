@@ -26,6 +26,17 @@
             </div>
 
             <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <select id="tags" name="tags[]" class="form-select" multiple>
+                @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
+                        {{ $tag->name }}
+                    </option>
+                @endforeach
+            </select>
+            </div>
+
+            <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
                 <input type="file" class="form-control" id="image" name="image">
                 @if($post->image_path)

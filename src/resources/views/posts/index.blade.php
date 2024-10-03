@@ -4,7 +4,6 @@
     <div class="container">
         <h1>All Posts</h1>
 
-        <!-- Кнопка для створення нового посту -->
         <div class="mb-3">
             <a href="{{ route('posts.create') }}" class="btn btn-success">Create New Post</a>
         </div>
